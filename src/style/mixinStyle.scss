@@ -1,0 +1,32 @@
+// flex 通用函数
+@mixin flex(
+  $x: stretch,
+  $y: stretch,
+  $wrap: nowrap,
+  $dir: row,
+  $xGap: normal,
+  $yGap: normal
+) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $x;
+  align-items: $y;
+  flex-wrap: $wrap;
+  column-gap: $xGap;
+  row-gap: $yGap;
+}
+
+// 文本溢出省略通用函数（代码本身存在兼容性问题）
+@mixin omit($mtd: single, $maxW: 100%, $maxR: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $mtd == 'single' {
+    white-space: nowrap;
+    max-width: $maxW;
+  } @else if $mtd == 'multi' {
+    -webkit-line-clamp: $maxR;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+}

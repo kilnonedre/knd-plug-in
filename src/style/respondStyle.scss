@@ -1,0 +1,50 @@
+// 媒体查询进行屏幕适配
+$breakpoints: (
+  'phone': (
+    0px,
+    480px,
+  ),
+  'pad': (
+    481px,
+    768px,
+  ),
+  'notebook': (
+    769px,
+    1024px,
+  ),
+  'desktop': (
+    1025px,
+    1200px,
+  ),
+  'tv': (
+    1201px,
+  ),
+);
+
+// 使用方式 @include respond-to('pad', 'phone') { ... }
+@mixin respond-to($breakNames...) {
+  @each $breakName in $breakNames {
+    $bp: map-get($breakpoints, $breakName);
+    @if type-of($bp) == 'list' and length($bp) > 1 {
+      // 处理有最小和最大宽度的情况
+      $min: nth($bp, 1);
+      $max: nth($bp, 2);
+      @media (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else {
+      // 处理只有最小宽度的情况
+      $min: if(type-of($bp) == 'list', nth($bp, 1), $bp);
+      @media (min-width: $min) {
+        @content;
+      }
+    }
+  }
+}
+
+// hover 样式适配函数
+@mixin pc-hover {
+  @media (any-hover: hover) {
+    @content;
+  }
+}

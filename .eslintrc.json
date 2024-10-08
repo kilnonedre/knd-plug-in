@@ -1,0 +1,47 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "no-unused-vars": "error",
+    "no-console": "off",
+    "no-debugger": "off",
+    "array-bracket-spacing": 2,
+    "no-var": 2,
+    "no-eval": 2,
+    "arrow-spacing": 2,
+    "block-spacing": 2,
+    "key-spacing": 2,
+    "brace-style": 2,
+    "comma-dangle": 0, // 禁用:和 prettier 冲突
+    "object-curly-spacing": [2, "always"],
+    "complexity": ["error", { "max": 10 }],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^react", // vue放在首行
+            // 以字母(或数字或下划线)或“@”后面跟着字母开头的东西,通常为nodeModules引入
+            "^@?\\w",
+            "^@(/.*|$)", // 内部导入 "@/"
+            "^\\.\\.(?!/?$)", // 父级导入. 把 `..` 放在最后.
+            "^\\.\\./?$",
+            // 同级导入. 把同一个文件夹.放在最后
+            "^\\./(?=.*/)(?!/?$)",
+            "^\\.(?!/?$)",
+            "^\\./?$",
+            "^.+\\.?(css|less|scss)$", // 样式导入.
+            "^\\u0000" // 带有副作用导入，比如import 'a.css'这种.
+          ]
+        ]
+      }
+    ]
+  }
+}
