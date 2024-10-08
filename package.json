@@ -9,10 +9,12 @@
     "lint": "next lint",
     "tauri": "tauri",
     "prepare": "husky",
+    "pre-commit": "next lint",
     "commit": "git add . && git cz"
   },
   "dependencies": {
     "next": "14.2.14",
+    "prettier": "^3.3.3",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.79.4"
@@ -40,7 +42,7 @@
   },
   "lint-staged": {
     "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
-      "npm run lint",
+      "eslint --fix",
       "prettier --write"
     ]
   },
