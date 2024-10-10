@@ -1,0 +1,7 @@
+.icon {
+  font-family: 'iconFont';
+  transition: all 0.1s;
+  &:hover {
+    color: var(--hover-color);
+  }
+}

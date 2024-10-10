@@ -1,0 +1,70 @@
+.loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 99999;
+  background-color: #ffffff;
+  &-cube {
+    margin: auto;
+    font-size: 24px;
+    height: 1em;
+    width: 1em;
+    position: relative;
+    transform: rotatex(30deg) rotatey(45deg);
+    transform-style: preserve-3d;
+    animation: cube-spin 2s infinite ease-in-out alternate;
+  }
+  &__side {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform-style: preserve-3d;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: currentcolor;
+      transform: translatez(0.5em);
+      animation: cube-explode 2s infinite ease-in-out;
+      opacity: 0.5;
+    }
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        @if $i <= 4 {
+          transform: rotatey(90deg * $i);
+        } @else if $i == 5 {
+          transform: rotatex(90deg);
+        } @else if $i == 6 {
+          transform: rotatex(270deg);
+        }
+      }
+    }
+  }
+}
+
+@keyframes cube-spin {
+  0% {
+    transform: rotatex(30deg) rotatey(45deg);
+  }
+  100% {
+    transform: rotatex(30deg) rotatey(405deg);
+  }
+}
+
+@keyframes cube-explode {
+  0% {
+    transform: translatez(0.5em);
+  }
+  50% {
+    transform: translatez(0.75em);
+  }
+  100% {
+    transform: translatez(0.5em);
+  }
+}
