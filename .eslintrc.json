@@ -2,7 +2,13 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "plugins": ["simple-import-sort"],
   "rules": {
-    "no-unused-vars": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_", // 忽略以 _ 开头的变量
+        "argsIgnorePattern": "^_" // 忽略以 _ 开头的函数参数
+      }
+    ],
     "no-console": "off",
     "no-debugger": "off",
     "array-bracket-spacing": 2,
@@ -22,6 +28,8 @@
         "ignoreReadBeforeAssign": false
       }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-function-type": "off",
     "simple-import-sort/imports": [
       "error",
       {
