@@ -1,8 +1,8 @@
 import React from 'react'
-import LoginIndex from '@/view/login'
+import BaseIndex from '@/view/base'
 
-const Index = () => {
-  return <LoginIndex />
+const Base = () => {
+  return <BaseIndex />
 }
 
-export default Index
+export default Base

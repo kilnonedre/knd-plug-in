@@ -30,14 +30,14 @@ const LoginIndex = () => {
   }
 
   const changeEml = (e: string) => {
-    if (emlErrMsg && e) {
+    if (emlErrMsg) {
       setEmlErrMsg('')
     }
     setEml(e)
   }
 
   const changePwd = (e: string) => {
-    if (pwdErrMsg && e) {
+    if (pwdErrMsg) {
       setPwdErrMsg('')
     }
     setPwd(e)
